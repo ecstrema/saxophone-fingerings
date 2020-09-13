@@ -24,55 +24,55 @@ MuseScore {
    menuPath: "Plugins." + qsTr("saxophone fingerings") + "." + qsTr("$INSTRUMENT$")
 
    // Small note name size is fraction of the full font size.
-   property var fontSizeBig: 1.5;
+   property var fontSizeBig: 0.8;
 
    function pitchToText(pitch) {
       console.log(pitch)
 
       pitch = pitch + $TRANSPOSITION$; // transpose to $INSTRUMENT$ saxophone
       switch(pitch){
-         case 57: return '`123456cBA'  // A For baritone saxophone
-         case 58: return '`123456cB'
-         case 59: return '`123456cb'   // B
-         case 60: return '`123456c'    // MIDDLE C (concert pitch)
-         case 61: return '`123456cC'
-         case 62: return '`123456'     // D
-         case 63: return '`123456D'
-         case 64: return '`12345'      // E
-         case 65: return '`1234'       // F
-         case 66: return '`1235'
-         case 67: return '`123'        // G
-         case 68: return '`123G'
-         case 69: return '`12'         // A
-         case 70: return '`12Tj'
-         case 71: return '`1'          // B
-         case 72: return '`2'          // C
-         case 73: return '`'
-         case 74: return '`8123456'    // D
-         case 75: return '`8123456D'
-         case 76: return '`812345'     // E
-         case 77: return '`81234'      // F
-         case 78: return '`81235'
-         case 79: return '`8123'       // G
-         case 80: return '`8123G'
-         case 81: return '`812'        // A
-         case 82: return '`812Tj'
-         case 83: return '`81'         // B
-         case 84: return '`82'         // C
-         case 85: return '`8'
-         case 86: return '`8q'         // D
-         case 87: return '`8qw'
-         case 88: return '`8qwe'       // E
-         case 88: return '`8qwer'      // F
-         case 89: return '`8qwert'
-         case 90: return '`81.4Tj'     // G // HIGH REGISTER
-         case 91: return '`81234Tj'
-         case 91: return '`8234Tj'     // A
-         case 92: return '`834Tj'
-         case 93: return '`8q34Tj'     // B
-         case 94: return '`8qw34Tj'    // C
-         case 95: return '`8qwe34Tj'
-         case 96: return '`8x'         // D
+         case 57: return 's123456790bh'  // A For baritone saxophone
+         case 58: return 's1234567bh'
+         case 59: return 's1234567b'   // B
+         case 60: return 's1234567'    // MIDDLE C (concert pitch)
+         case 61: return 's1234567d'
+         case 62: return 's123456'     // D
+         case 63: return 's123456d'
+         case 64: return 's12345'      // E
+         case 65: return 's1234'       // F
+         case 66: return 's1235'
+         case 67: return 's123'        // G
+         case 68: return 's123g'
+         case 69: return 's12'         // A
+         case 70: return 's12a'
+         case 71: return 's1'          // B
+         case 72: return 's2'          // C
+         case 73: return 's'
+         case 74: return 's800123456'    // D
+         case 75: return 's80123456d'
+         case 76: return 's8012345'     // E
+         case 77: return 's801234'      // F
+         case 78: return 's801235'
+         case 79: return 's80123'       // G
+         case 80: return 's80123g'
+         case 81: return 's8012'        // A
+         case 82: return 's8012a'
+         case 83: return 's801'         // B
+         case 84: return 's802'         // C
+         case 85: return 's80'
+         case 86: return 's80q'         // D
+         case 87: return 's80qw'
+         case 88: return 's80qwe'       // E
+         case 88: return 's80qwer'      // F
+         case 89: return 's80qwert'
+         case 90: return 's801.4a'     // G // HIGH REGISTER
+         case 91: return 's801234a'
+         case 91: return 's80234a'     // A
+         case 92: return 's8034a'
+         case 93: return 's80q34a'     // B
+         case 94: return 's80qw34a'    // C
+         case 95: return 's80qwe34a'
+         case 96: return 's80x'         // D
 
          default: return '?'
       }
@@ -83,13 +83,14 @@ MuseScore {
          var sep = ",";   // change to "," if you want them horizontally (anybody?)
          if ( i > 0 )
             text.text = sep + text.text; // any but top note
+         text.fontSize = 50
          if (small)
              text.fontSize *= fontSizeBig
          if (typeof notes[i].tpc === "undefined") // like for grace notes ?!?
             return
 
          text.subStyle = Tid.USER10;
-         text.fontFace = "Woodwind Tablature Sax Euro";
+         text.fontFace = "Saxy";
          text.text = pitchToText(notes[i].pitch) + text.text;
       }  // end for note
    }
