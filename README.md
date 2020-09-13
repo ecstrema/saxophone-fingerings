@@ -8,3 +8,5 @@ install [the sax fingerings **EURO** font](https://musescore.org/sites/musescore
 
 ## Usage
 Select your part and run the _appropriate_ plugin
+
+![Example gif of usage](example.gif)
