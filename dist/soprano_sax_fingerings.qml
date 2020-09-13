@@ -19,53 +19,53 @@ import QtQuick 2.2
 import MuseScore 3.0
 
 MuseScore {
-   version: "3.4.2.1"
-   description: qsTr("This plugin adds saxophone barytone fingerings to your selection/the whole score")
-   menuPath: "Plugins." + qsTr("saxophone fingerings") + "." + qsTr("barytone")
+   version: "3.5"
+   description: qsTr("This plugin adds soprano saxophone fingerings to your selection/the whole score")
+   menuPath: "Plugins." + qsTr("saxophone fingerings") + "." + qsTr("soprano")
 
    // Small note name size is fraction of the full font size.
    property var fontSizeBig: 1.5;
-   
-   function pitchToText(pitch) {
-	    console.log(pitch)
 
-		pitch = pitch - 15; // transpose to bary saxophone
-		switch(pitch){
-			case 58: return '`123456cB' // Bb
-			case 59: return '`123456cb' 
-			case 60: return '`123456c' // MIDDLE C (concert pitch)
-			case 61: return '`123456cC' 
-			case 62: return '`123456'  // D
-			case 63: return '`123456D'  
-			case 64: return '`12345'  // E
-			case 65: return '`1234'   // F
-			case 66: return '`1235'  
-			case 67: return '`123'    // G
-			case 68: return '`123G'  
-			case 69: return '`12'     // A
-			case 70: return '`12Tj'  
-			case 71: return '`1'      // B
-			case 72: return '`2'      // C
-			case 73: return '`'    
-			case 74: return '`8123456' // D
-			case 75: return '`8123456D' 
-			case 76: return '`812345'  // E
-			case 77: return '`81234'   // F
-			case 78: return '`81235'  
-			case 79: return '`8123'    // G
-			case 80: return '`8123G'  
-			case 81: return '`812'     // A
-			case 82: return '`812Tj'  
-			case 83: return '`81'      // B
-			case 84: return '`82'      // C
-			case 85: return '`8'    
-			case 86: return '`8q' 		// D
-			case 87: return '`8qw' 
-			case 88: return '`8qwe'  	// E
-			case 88: return '`8qwer'  	// F
-			case 89: return '`8qwert'
-			default: return '?'
-		}
+   function pitchToText(pitch) {
+      console.log(pitch)
+
+      pitch = pitch + 2; // transpose to soprano saxophone
+      switch(pitch){
+         case 58: return '`123456cB' // Bb
+         case 59: return '`123456cb'
+         case 60: return '`123456c' // MIDDLE C (concert pitch)
+         case 61: return '`123456cC'
+         case 62: return '`123456'  // D
+         case 63: return '`123456D'
+         case 64: return '`12345'  // E
+         case 65: return '`1234'   // F
+         case 66: return '`1235'
+         case 67: return '`123'    // G
+         case 68: return '`123G'
+         case 69: return '`12'     // A
+         case 70: return '`12Tj'
+         case 71: return '`1'      // B
+         case 72: return '`2'      // C
+         case 73: return '`'
+         case 74: return '`8123456' // D
+         case 75: return '`8123456D'
+         case 76: return '`812345'  // E
+         case 77: return '`81234'   // F
+         case 78: return '`81235'
+         case 79: return '`8123'    // G
+         case 80: return '`8123G'
+         case 81: return '`812'     // A
+         case 82: return '`812Tj'
+         case 83: return '`81'      // B
+         case 84: return '`82'      // C
+         case 85: return '`8'
+         case 86: return '`8q'       // D
+         case 87: return '`8qw'
+         case 88: return '`8qwe'     // E
+         case 88: return '`8qwer'     // F
+         case 89: return '`8qwert'
+         default: return '?'
+      }
    }
 
    function nameChord (notes, text, small) {
@@ -77,9 +77,10 @@ MuseScore {
              text.fontSize *= fontSizeBig
          if (typeof notes[i].tpc === "undefined") // like for grace notes ?!?
             return
-            
-         text.fontFace = "Woodwind Tablature Sax Euro"
-		 text.text = pitchToText(notes[i].pitch) + text.text;
+
+         text.subStyle = Tid.USER1;
+         text.fontFace = "Woodwind Tablature Sax Euro";
+         text.text = pitchToText(notes[i].pitch) + text.text;
       }  // end for note
    }
 
@@ -106,26 +107,26 @@ MuseScore {
    }
 
    onRun: {
-	   work();
+      work();
    }
-	function work()   {
+   function work()   {
       var cursor = curScore.newCursor();
       var startStaff;
       var endStaff;
       var endTick;
       var fullScore = false;
-      cursor.rewind(1);
+      cursor.rewind(RewindMode.SELECTION_START);
       if (!cursor.segment) { // no selection
          fullScore = true;
          startStaff = 0; // start with 1st staff
          endStaff  = curScore.nstaves - 1; // and end with last
       } else {
          startStaff = cursor.staffIdx;
-         cursor.rewind(2);
+         cursor.rewind(RewindMode.SELECTION_END);
          if (cursor.tick === 0) {
             // this happens when the selection includes
             // the last measure of the score.
-            // rewind(2) goes behind the last segment (where
+            // rewind(RewindMode.SELECTION_END) goes behind the last segment (where
             // there's none) and sets tick=0
             endTick = curScore.lastSegment.tick + 1;
          } else {
@@ -137,12 +138,12 @@ MuseScore {
 
       for (var staff = startStaff; staff <= endStaff; staff++) {
          for (var voice = 0; voice < 4; voice++) {
-            cursor.rewind(1); // beginning of selection
+            cursor.rewind(RewindMode.SELECTION_START); // beginning of selection
             cursor.voice    = voice;
             cursor.staffIdx = staff;
 
             if (fullScore)  // no selection
-               cursor.rewind(0); // beginning of score
+               cursor.rewind(RewindMode.SCORE_START); // beginning of score
             while (cursor.segment && (fullScore || cursor.tick < endTick)) {
                if (cursor.element && cursor.element.type === Element.CHORD) {
                   var text = newElement(Element.STAFF_TEXT);      // Make a STAFF_TEXT
