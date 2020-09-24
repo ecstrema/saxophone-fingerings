@@ -80,17 +80,18 @@ MuseScore {
 
    function nameChord (notes, text, small) {
       for (var i = 0; i < notes.length; i++) {
-         var sep = ",";   // change to "," if you want them horizontally (anybody?)
+         var sep = " ";   // change to "\n" if you want them vertically (anybody?)
+
+         text.subStyle = Tid.USER10;
+         text.fontFace = "Saxy";
          if ( i > 0 )
             text.text = sep + text.text; // any but top note
-         text.fontSize = 50
+         text.fontSize = 100
          if (small)
              text.fontSize *= fontSizeBig
          if (typeof notes[i].tpc === "undefined") // like for grace notes ?!?
             return
 
-         text.subStyle = Tid.USER10;
-         text.fontFace = "Saxy";
          text.text = pitchToText(notes[i].pitch) + text.text;
       }  // end for note
    }
