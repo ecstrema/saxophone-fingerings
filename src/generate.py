@@ -8,7 +8,7 @@ saxTransposition = {
 base_file = "sax_fingerings"
 
 code = ""
-with open(base_file + ".template.qml", "r") as file:
+with open(base_file + ".qml.template", "r") as file:
     code = file.read()
 
 for key, value in saxTransposition.items():

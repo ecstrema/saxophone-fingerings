@@ -35,7 +35,7 @@ MuseScore {
          case 58: return 's1234567bh'
          case 59: return 's1234567b'   // B
          case 60: return 's1234567'    // MIDDLE C (concert pitch)
-         case 61: return 's1234567d'
+         case 61: return 's1234567v'
          case 62: return 's123456'     // D
          case 63: return 's123456d'
          case 64: return 's12345'      // E
@@ -48,7 +48,7 @@ MuseScore {
          case 71: return 's1'          // B
          case 72: return 's2'          // C
          case 73: return 's'
-         case 74: return 's800123456'    // D
+         case 74: return 's80123456'    // D
          case 75: return 's80123456d'
          case 76: return 's8012345'     // E
          case 77: return 's801234'      // F
@@ -65,7 +65,7 @@ MuseScore {
          case 88: return 's80qwe'       // E
          case 88: return 's80qwer'      // F
          case 89: return 's80qwert'
-         case 90: return 's801.4a'     // G // HIGH REGISTER
+         case 90: return 's8014ta'     // G // HIGH REGISTER
          case 91: return 's801234a'
          case 91: return 's80234a'     // A
          case 92: return 's8034a'
