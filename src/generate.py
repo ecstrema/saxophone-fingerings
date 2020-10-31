@@ -1,3 +1,4 @@
+import os
 saxTransposition = {
     "soprano": 2,
     "alto": 9,
@@ -6,6 +7,9 @@ saxTransposition = {
 }
 
 base_file = "sax_fingerings"
+
+if not os.getcwd().endswith('src'):
+    os.chdir('src')
 
 code = ""
 with open(base_file + ".qml.template", "r") as file:
@@ -16,7 +20,6 @@ for key, value in saxTransposition.items():
         file.write(code.replace("$INSTRUMENT$", key).replace(
             "$TRANSPOSITION$", str(value)))
 
-import os
 export_file_name = '../demo_Saxy.png'
 if os.path.exists(export_file_name):
     os.remove(export_file_name)

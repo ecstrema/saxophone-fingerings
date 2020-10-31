@@ -1,22 +1,6 @@
-//=============================================================================
-//  MuseScore
-//  Music Composition & Notation
-//
-//  Note Names Plugin
-//
-//  Copyright (C) 2012 Werner Schweer
-//  Copyright (C) 2013 - 2020 Joachim Schmitz
-//  Copyright (C) 2014 Jörn Eichler
-//  Copyright (C) 2020 Johan Temmerman
-//
-//  This program is free software; you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License version 2
-//  as published by the Free Software Foundation and appearing in
-//  the file LICENCE.GPL
-//=============================================================================
-
 import QtQuick 2.2
 import MuseScore 3.0
+import QtQuick.Dialogs 1.1
 
 MuseScore {
    version: "3.5"
@@ -86,7 +70,7 @@ MuseScore {
          text.fontFace = "Saxy";
          if ( i > 0 )
             text.text = sep + text.text; // any but top note
-         text.fontSize = 100
+         text.fontSize = 30
          if (small)
              text.fontSize *= fontSizeBig
          if (typeof notes[i].tpc === "undefined") // like for grace notes ?!?
@@ -119,8 +103,13 @@ MuseScore {
    }
 
    onRun: {
+      if (Qt.fontFamilies().indexOf('Fiati') < 0) {
+         fontMissingDialog.open();
+         return;
+      }
       work();
    }
+
    function work()   {
       var cursor = curScore.newCursor();
       var startStaff;
@@ -200,4 +189,17 @@ MuseScore {
          } // end for voice
       } // end for staff
    } // end onRun
+
+   MessageDialog {
+      id : fontMissingDialog
+      icon : StandardIcon.Warning
+      standardButtons : StandardButton.Ok
+      title : 'Missing Saxy font'
+      text : 'This plugin needs the Saxy font to be installed from your device in order to work\n.'
+      informativeText  : 'You can download it with this link:\n' +
+      'https://github.com/Marr11317/Saxy/raw/master/redist/Saxy.ttf\n\n' +
+      'and follow the standard procedure to install it on your device.\n' +
+      'You will also need to restart MuseScore.\n' +
+      'More information about this font is available here: https://github.com/Marr11317/Saxy'
+   }
 }
