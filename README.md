@@ -1,4 +1,4 @@
-![preview](demo_Saxy.png)
+![preview](demo_Saxy.svg)
 
 # saxophone-fingerings
 
