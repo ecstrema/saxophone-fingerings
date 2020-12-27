@@ -103,7 +103,7 @@ MuseScore {
    }
 
    onRun: {
-      if (Qt.fontFamilies().indexOf('Fiati') < 0) {
+      if (Qt.fontFamilies().indexOf('Saxy') < 0) {
          fontMissingDialog.open();
          return;
       }
