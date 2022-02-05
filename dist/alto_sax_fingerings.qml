@@ -47,16 +47,16 @@ MuseScore {
          case 86: return 's80q'         // D
          case 87: return 's80qw'
          case 88: return 's80qwe'       // E
-         case 88: return 's80qwer'      // F
-         case 89: return 's80qwert'
-         case 90: return 's8014ta'     // G // HIGH REGISTER
-         case 91: return 's801234a'
-         case 91: return 's80234a'     // A
-         case 92: return 's8034a'
-         case 93: return 's80q34a'     // B
-         case 94: return 's80qw34a'    // C
-         case 95: return 's80qwe34a'
-         case 96: return 's80x'         // D
+         case 89: return 's80qwer'      // F
+         case 90: return 's80qwert'
+         case 91: return 's8014ta'     // G // HIGH REGISTER
+         case 92: return 's801234a'
+         case 92: return 's80234a'     // A
+         case 93: return 's8034a'
+         case 94: return 's80q34a'     // B
+         case 95: return 's80qw34a'    // C
+         case 96: return 's80qwe34a'
+         case 97: return 's80x'         // D
 
          default: return '?'
       }
