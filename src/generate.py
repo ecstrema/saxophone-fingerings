@@ -25,6 +25,6 @@ export_ext = 'svg'
 if os.path.exists("../" + export_file_name + '.' + export_ext):
     os.remove("../" + export_file_name + '.' + export_ext)
 
-os.system(f'musescore3.exe ../test/sax_fing_test.mscz --export-to {"../" + export_file_name + "." + export_ext}')
+os.system(f'musescore4.exe ../test/sax_fing_test.mscz --export-to {"../" + export_file_name + "." + export_ext}')
 os.rename("../" + export_file_name + '-1.' + export_ext,
           "../" + export_file_name + '.' + export_ext)

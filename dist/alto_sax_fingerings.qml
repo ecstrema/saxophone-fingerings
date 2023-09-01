@@ -4,8 +4,11 @@ import QtQuick.Dialogs 1.1
 
 MuseScore {
    version: "3.5"
-   description: qsTr("This plugin adds alto saxophone fingerings to your selection/the whole score")
+   description: qsTr("This plugin adds alto saxophone fingerings to your selection or the whole score if nothing is selected")
+   requiresScore: true
    menuPath: "Plugins." + qsTr("saxophone fingerings") + "." + qsTr("alto")
+   categoryCode: "composing-arranging-tools"
+   thumbnailName: "thumbnail_alto.png"
 
    // Small note name size is fraction of the full font size.
    property var fontSizeBig: 0.8;
