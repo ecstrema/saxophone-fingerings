@@ -1,3 +1,7 @@
+# Note: 
+
+Because of [this issue](https://github.com/musescore/MuseScore/issues/19252), thi plugin currently doesn't work in MuseScore4. 
+
 ![preview](demo_Saxy.svg)
 
 # saxophone-fingerings
