@@ -1,12 +1,8 @@
-# Note: 
-
-Because of [this issue](https://github.com/musescore/MuseScore/issues/19252), thi plugin currently doesn't work in MuseScore4. 
-
 ![preview](demo_Saxy.svg)
 
-# saxophone-fingerings
+# Fingerings
 
-Musescore plugin to add saxophone fingerings to your charts.
+Musescore plugin to add fingerings to your charts.
 
 Created because of [this thread](https://musescore.org/en/node/310327)
 
@@ -16,7 +12,7 @@ install [the Saxy font](https://github.com/Marr11317/Saxy) ([TTF](redist/Saxy.tt
 
 ## Usage
 
-Select your part and run the _appropriate_ plugin.
+Select your part and run the plugin.
 
 Note that you will probably need to resize the fingerings to your need. To do that, right-click one -> select similar -> set the font size in the inspector.
 
